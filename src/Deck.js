@@ -7,33 +7,94 @@ const Deck = () => {
     const [worse, setWorse] = useState([]);
     
     const [num, setNum] = useState(3);
-    let pivot = 0;
+    const [pivot, setPivot] = useState();
+    const [index, setIndex] = useState(0);
 
     const randomIndex = () => {
         return Math.floor(Math.random()*items.length);
     }
 
     /* main logic */
-    const compare = () => {
+    const start = () => {
         //choose a pivot
-        pivot = items[randomIndex()]
+        let temp_pivot = items[randomIndex()]
+        setPivot(temp_pivot);
         // move pivot from items to better array
         setItems(items.filter((item)=>{
-            return item != pivot;
+            return item != temp_pivot;
         }))
-        setBetter(oldBetter => [...oldBetter, pivot])
+        setBetter(oldBetter => [...oldBetter, temp_pivot])
+    }
+
+    const pushBetter = (item) => {
+        // move item from original to better
+        setBetter(oldBetter => [...oldBetter, item])
+        // update index
+        index == items.length-1 ? setIndex(0) : setIndex(index+1)
+        // update array if everything is checked
+        if (index == items.length-1){
+            if (better.length == num){
+                alert("we found it");
+            } else if (better.length < num){
+                alert("need to find more contenders")
+                setItems(worse);
+                setWorse([]);
+            } else if (better.length > num){
+                alert("still too much contenders")
+                setItems(better);
+                setBetter([])
+                setWorse([])
+            }
+        }
+    }
+
+    const pushWorse = (item) => {
+        // move item from original to better
+        setWorse(oldWorse => [...oldWorse, item]);
+        // update index
+        index == items.length-1 ? setIndex(0) : setIndex(index+1);
+        // update array if everything is checked
+        if (index == items.length-1){
+            if (better.length == num){
+                alert("we found it");
+            } else if (better.length < num){
+                alert("need to find more contenders")
+                setItems(worse);
+                setWorse([]);
+            } else if (better.length > num){
+                alert("still too much contenders")
+                setItems(better);
+                setBetter([])
+                setWorse([])
+            }
+        }
     }
     
     return (
     <div className="">
-        <button onClick={compare}>test</button>
-        {items.map((item)=>{
-            return <p>{item}</p>
-        })}
-        {better.map((item)=>{
-            return <p className="text-white">{item}</p>
-        })}
-        <h1>Is the following item better than {pivot}</h1>
+        <div className="row">
+            <div className="col">
+                <button onClick={start}>start</button>
+                <h1>{pivot}</h1>
+                {items.map((item)=>{
+                    return <p>{item}</p>
+                })}
+            </div>
+            <div className="col">
+                <button onClick={()=>pushBetter(items[index])}>better</button>
+                {better.map((item)=>{
+                return <p className="text-white">{item}</p>
+                })}
+            </div>
+            <div className="col">
+                <button onClick={()=>pushWorse(items[index])}>worse</button>
+                {worse.map((item)=>{
+                return <p className="text-primary">{item}</p>
+                })}
+            </div>
+        </div>
+        <h1>Is the following item better than {pivot}?</h1>
+        <h2>{items[index]}</h2>
     </div>
     );
 }
