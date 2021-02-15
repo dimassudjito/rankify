@@ -1,5 +1,5 @@
 from random import choice
-numbers = [1, 2, 3, 4, 5]
+numbers = [1, 2, 3, 4, 5, 6, 7, 8 , 9, 10]
 indofood = [
     "ketoprak",
     "nasi goreng",
@@ -52,4 +52,4 @@ def deck(items):
             worse = []
     print(better)
         
-deck(indofood)
+deck(numbers)

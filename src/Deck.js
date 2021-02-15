@@ -30,43 +30,42 @@ const Deck = () => {
         // move item from original to better
         setBetter(oldBetter => [...oldBetter, item])
         // update index
-        index == items.length-1 ? setIndex(0) : setIndex(index+1)
-        // update array if everything is checked
-        if (index == items.length-1){
-            if (better.length == num){
-                alert("we found it");
-            } else if (better.length < num){
-                alert("need to find more contenders")
-                setItems(worse);
-                setWorse([]);
-            } else if (better.length > num){
-                alert("still too much contenders")
-                setItems(better);
-                setBetter([])
-                setWorse([])
-            }
+        if (index != items.length-1){
+            // not the last item
+            setIndex(index+1);
+        } else {
+            // reset index
+            setIndex(0);
         }
     }
 
     const pushWorse = (item) => {
         // move item from original to better
         setWorse(oldWorse => [...oldWorse, item]);
-        // update index
-        index == items.length-1 ? setIndex(0) : setIndex(index+1);
-        // update array if everything is checked
-        if (index == items.length-1){
-            if (better.length == num){
-                alert("we found it");
-            } else if (better.length < num){
-                alert("need to find more contenders")
-                setItems(worse);
-                setWorse([]);
-            } else if (better.length > num){
-                alert("still too much contenders")
-                setItems(better);
-                setBetter([])
-                setWorse([])
-            }
+                // update index
+        if (index != items.length-1){
+            // not the last item
+            setIndex(index+1);
+        } else {
+            // reset index
+            setIndex(0);
+        }
+    }
+
+    const reset = () => {
+        // now we're entering the last item of items
+        // update array since everything is checked
+        if (better.length == num){
+            alert("we found it: "+better);
+        } else if (better.length < num){
+            alert("need to find more contenders")
+            setItems(worse);
+            setWorse([]);
+        } else if (better.length > num){
+            alert("still too much contenders")
+            setItems(better);
+            setBetter([])
+            setWorse([])
         }
     }
     
@@ -95,6 +94,7 @@ const Deck = () => {
         </div>
         <h1>Is the following item better than {pivot}?</h1>
         <h2>{items[index]}</h2>
+        <button onClick={reset}>next</button>
     </div>
     );
 }
