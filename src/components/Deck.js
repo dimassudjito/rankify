@@ -29,7 +29,7 @@ const Deck = () => {
         setPivot(temp_pivot);
         // move pivot from items to better array
         setItems(items.filter((item)=>{
-            return item != temp_pivot;
+            return item !== temp_pivot;
         }))
         setBetter(oldBetter => [...oldBetter, temp_pivot])
     }
@@ -38,7 +38,7 @@ const Deck = () => {
         // move item from original to better
         setBetter(oldBetter => [...oldBetter, item])
         // update index
-        if (index != items.length-1){
+        if (index !== items.length-1){
             // not the last item
             setIndex(index+1);
         } else {
@@ -52,7 +52,7 @@ const Deck = () => {
         // move item from original to better
         setWorse(oldWorse => [...oldWorse, item]);
                 // update index
-        if (index != items.length-1){
+        if (index !== items.length-1){
             // not the last item
             setIndex(index+1);
         } else {
@@ -65,7 +65,7 @@ const Deck = () => {
     const reset = () => {
         // now we're entering the last item of items
         // update array since everything is checked
-        if (better.length == num){
+        if (better.length === num){
             alert("we found it: "+better);
         } else if (better.length < num){
             alert("need to find more contenders, click start")
