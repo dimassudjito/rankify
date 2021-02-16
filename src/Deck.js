@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import Card from "./Card"
+
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8 ,9, 10];
 
 const Deck = () => {
@@ -61,16 +63,19 @@ const Deck = () => {
             alert("need to find more contenders")
             setItems(worse);
             setWorse([]);
+            // start();
         } else if (better.length > num){
             alert("still too much contenders")
             setItems(better);
             setBetter([])
             setWorse([])
+            // start();
         }
     }
     
     return (
     <div className="">
+        {/* debug dashboard */}
         <div className="row">
             <div className="col">
                 <button onClick={start}>start</button>
@@ -78,6 +83,7 @@ const Deck = () => {
                 {items.map((item)=>{
                     return <p>{item}</p>
                 })}
+                <button onClick={reset}>next</button>
             </div>
             <div className="col">
                 <button onClick={()=>pushBetter(items[index])}>better</button>
@@ -92,9 +98,12 @@ const Deck = () => {
                 })}
             </div>
         </div>
-        <h1>Is the following item better than {pivot}?</h1>
-        <h2>{items[index]}</h2>
-        <button onClick={reset}>next</button>
+        <hr/>
+        <div>
+            <h1 className="d-flex justify-content-center">Is the following item better than {pivot}?</h1>
+            <Card item={items[index]}/>
+            {/* <h2>{items[index]}</h2> */}
+        </div>
     </div>
     );
 }
