@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
+
 import Card from "./Card"
+import Debug from './Debug'
 
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8 ,9, 10];
 
@@ -9,11 +11,15 @@ const Deck = () => {
     const [worse, setWorse] = useState([]);
     
     const [num, setNum] = useState(3);
-    const [pivot, setPivot] = useState();
+    const [pivot, setPivot] = useState("(click start)");
     const [index, setIndex] = useState(0);
 
     const randomIndex = () => {
         return Math.floor(Math.random()*items.length);
+    }
+
+    const numChange = (event) => {
+        setNum(event.target.value);
     }
 
     /* main logic */
@@ -38,6 +44,7 @@ const Deck = () => {
         } else {
             // reset index
             setIndex(0);
+            alert("click next")
         }
     }
 
@@ -51,6 +58,7 @@ const Deck = () => {
         } else {
             // reset index
             setIndex(0);
+            alert("click next")
         }
     }
 
@@ -60,12 +68,12 @@ const Deck = () => {
         if (better.length == num){
             alert("we found it: "+better);
         } else if (better.length < num){
-            alert("need to find more contenders")
+            alert("need to find more contenders, click start")
             setItems(worse);
             setWorse([]);
             // start();
         } else if (better.length > num){
-            alert("still too much contenders")
+            alert("still too much contenders, click start")
             setItems(better);
             setBetter([])
             setWorse([])
@@ -75,34 +83,20 @@ const Deck = () => {
     
     return (
     <div className="">
-        {/* debug dashboard */}
-        <div className="row">
-            <div className="col">
-                <button onClick={start}>start</button>
-                <h1>{pivot}</h1>
-                {items.map((item)=>{
-                    return <p>{item}</p>
-                })}
-                <button onClick={reset}>next</button>
-            </div>
-            <div className="col">
-                <button onClick={()=>pushBetter(items[index])}>better</button>
-                {better.map((item)=>{
-                return <p className="text-white">{item}</p>
-                })}
-            </div>
-            <div className="col">
-                <button onClick={()=>pushWorse(items[index])}>worse</button>
-                {worse.map((item)=>{
-                return <p className="text-primary">{item}</p>
-                })}
-            </div>
-        </div>
-        <hr/>
-        <div>
-            <h1 className="d-flex justify-content-center">Is the following item better than {pivot}?</h1>
+        {/* <Debug pivot={pivot} items={items} better={better} worse={worse} /> */}
+        <div className="m-5">
+            <label className="d-flex justify-content-center"> 
+                # of top contenders : 
+                <input className="mx-1" type="number" value={num} onChange={numChange}/>
+            </label>
+            <h1 className="d-flex justify-content-center mt-5">Is the following item better than {pivot}?</h1>
             <Card item={items[index]}/>
-            {/* <h2>{items[index]}</h2> */}
+            <div className="d-flex justify-content-center">
+                <button className="btn btn-light m-2" onClick={start}>start</button>
+                <button className="btn btn-danger m-2" onClick={()=>pushWorse(items[index])}>worse</button>
+                <button className="btn btn-success m-2" onClick={()=>pushBetter(items[index])}>better</button>
+                <button className="btn btn-light m-2" onClick={reset}>next</button>
+            </div>
         </div>
     </div>
     );
