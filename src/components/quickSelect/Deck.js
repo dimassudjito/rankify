@@ -16,7 +16,7 @@ const Deck = () => {
     const [worse, setWorse] = useState([]);
     // setting up the computation variable
     const [num, setNum] = useState(3);
-    const [pivot, setPivot] = useState("(click start)");
+    const [pivot, setPivot] = useState();
     const [index, setIndex] = useState(0);
     // setting up the alert/status system
     const [status, setStatus] = useState("start");
@@ -86,18 +86,26 @@ const Deck = () => {
     return (
     <div className="">
         {/* <Debug pivot={pivot} items={items} better={better} worse={worse} /> */}
-        <Alert status={status} better={better}/>
+        <Alert status={status} better={better} items={items}/>
         <div className="m-5">
+            {status == "start"?
+            <div className="my-5">
             <label className="d-flex justify-content-center"> 
-                # of top contenders : 
-                <input className="mx-1" type="number" value={num} onChange={(e)=>{setNum(e.target.value)}}/>
-            </label>
+            # of top contenders : 
+            <input className="mx-1" type="number" value={num} onChange={(e)=>{setNum(e.target.value)}}/>
+            </label> 
             <label className="d-flex justify-content-center"> 
-                comma-separated options : 
-                <textarea className="mx-1" value={items} onChange={(e)=>{setItems(e.target.value.split(","))}}/>
+            comma-separated options : 
+            <textarea className="mx-1" value={items} onChange={(e)=>{setItems(e.target.value.split(","))}}/>
             </label>
+            </div>
+            : ""}
+            {pivot != null ?
             <h1 className="d-flex justify-content-center mt-5">Is the following item better than {pivot}?</h1>
+            : ""}
+            {status != "start" ?
             <Card item={items[index]}/>
+            : ""}
             <div className="d-flex justify-content-center">
                 {status == "start" ? 
                 <button className="btn btn-light m-2" onClick={start}>start</button> : ""}
@@ -109,6 +117,8 @@ const Deck = () => {
                 <button className="btn btn-warning m-2" onClick={reset}>check</button>: ""}
                 {status == "continue" ? 
                 <button className="btn btn-light m-2" onClick={start}>continue</button>: ""}
+                {status == "found" ?
+                <button className="btn btn-light m-2" onClick={()=>{window.location.reload()}}>restart</button>: ""}
             </div>
         </div>
     </div>
