@@ -1,5 +1,5 @@
 import React from 'react';
-import Deck from './components/Deck'
+import Deck from './components/quickSelect/Deck'
 import './App.css';
 
 function App() {
