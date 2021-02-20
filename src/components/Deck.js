@@ -5,9 +5,10 @@ import Debug from './Debug'
 
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8 ,9, 10];
 const cities = ["tokyo", "las vegas", "bali", "shanghai", "singapore", "vancouver", "paris", "taipei", "havana", "bangkok"]
+const text_numbers = "1, 2, 3, 4, 5, 6, 7, 8, 9"
 
 const Deck = () => {
-    const [items, setItems] = useState(cities);
+    const [items, setItems] = useState(text_numbers.split(","));
     const [better, setBetter] = useState([]);
     const [worse, setWorse] = useState([]);
     
