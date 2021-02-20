@@ -7,7 +7,7 @@ const numbers = [1, 2, 3, 4, 5, 6, 7, 8 ,9, 10];
 const cities = ["tokyo", "las vegas", "bali", "shanghai", "singapore", "vancouver", "paris", "taipei", "havana", "bangkok"]
 
 const Deck = () => {
-    const [items, setItems] = useState(numbers);
+    const [items, setItems] = useState(cities);
     const [better, setBetter] = useState([]);
     const [worse, setWorse] = useState([]);
     
