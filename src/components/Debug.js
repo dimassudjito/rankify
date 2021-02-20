@@ -3,7 +3,7 @@ import React from 'react'
 const Debug = ({pivot, items, better, worse}) => {
     return (
         <div>
-            <h1>Debug</h1>
+            <h1>Debug Dashboard</h1>
             <div className="row">
             <div className="col">
                 <h1>Main</h1>

@@ -3,12 +3,13 @@ import React, {useState} from 'react';
 import Card from "./Card"
 import Debug from './Debug'
 
+// hard-code data for testing
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8 ,9, 10];
 const cities = ["tokyo", "las vegas", "bali", "shanghai", "singapore", "vancouver", "paris", "taipei", "havana", "bangkok"]
 const text_numbers = "1, 2, 3, 4, 5, 6, 7, 8, 9"
 
 const Deck = () => {
-    const [items, setItems] = useState(text_numbers.split(","));
+    const [items, setItems] = useState([]);
     const [better, setBetter] = useState([]);
     const [worse, setWorse] = useState([]);
     
@@ -18,10 +19,6 @@ const Deck = () => {
 
     const randomIndex = () => {
         return Math.floor(Math.random()*items.length);
-    }
-
-    const numChange = (event) => {
-        setNum(event.target.value);
     }
 
     /* main logic */
@@ -85,11 +82,15 @@ const Deck = () => {
 
     return (
     <div className="">
-        <Debug pivot={pivot} items={items} better={better} worse={worse} />
+        {/* <Debug pivot={pivot} items={items} better={better} worse={worse} /> */}
         <div className="m-5">
             <label className="d-flex justify-content-center"> 
                 # of top contenders : 
-                <input className="mx-1" type="number" value={num} onChange={numChange}/>
+                <input className="mx-1" type="number" value={num} onChange={(e)=>{setNum(e.target.value)}}/>
+            </label>
+            <label className="d-flex justify-content-center"> 
+                comma-separated options : 
+                <textarea className="mx-1" value={items} onChange={(e)=>{setItems(e.target.value.split(","))}}/>
             </label>
             <h1 className="d-flex justify-content-center mt-5">Is the following item better than {pivot}?</h1>
             <Card item={items[index]}/>

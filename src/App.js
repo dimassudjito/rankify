@@ -5,6 +5,7 @@ import './App.css';
 function App() {
   return (
     <div className="container">
+      <h1><b><i>rankify</i></b></h1>
       <Deck/>
     </div>
   );
