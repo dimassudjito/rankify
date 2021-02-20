@@ -4,6 +4,7 @@ import Card from "./Card"
 import Debug from './Debug'
 
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8 ,9, 10];
+const cities = ["tokyo", "las vegas", "bali", "shanghai", "singapore", "vancouver", "paris", "taipei", "havana", "bangkok"]
 
 const Deck = () => {
     const [items, setItems] = useState(numbers);
@@ -65,7 +66,7 @@ const Deck = () => {
     const reset = () => {
         // now we're entering the last item of items
         // update array since everything is checked
-        if (better.length === num){
+        if (better.length == num){
             alert("we found it: "+better);
         } else if (better.length < num){
             alert("need to find more contenders, click start")
@@ -80,10 +81,10 @@ const Deck = () => {
             // start();
         }
     }
-    
+
     return (
     <div className="">
-        {/* <Debug pivot={pivot} items={items} better={better} worse={worse} /> */}
+        <Debug pivot={pivot} items={items} better={better} worse={worse} />
         <div className="m-5">
             <label className="d-flex justify-content-center"> 
                 # of top contenders : 

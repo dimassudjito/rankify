@@ -15,13 +15,13 @@ const Debug = ({pivot, items, better, worse}) => {
             <div className="col">
                 <h1>Better</h1>
                 {better.map((item)=>{
-                return <p className="text-success">{item}</p>
+                return <p>{item}</p>
                 })}
             </div>
             <div className="col">
                 <h1>Worse</h1>
                 {worse.map((item)=>{
-                return <p className="text-warning">{item}</p>
+                return <p>{item}</p>
                 })}
             </div>
         </div>
