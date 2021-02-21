@@ -2,7 +2,7 @@ import React from 'react';
 
 const Bracket = ({ bracket }) => {
     return (
-        <div className="row my-5 align-items-center">
+        <div className="row my-3 align-items-center">
             {bracket.map((list)=>{
                 return (
                     <div className="col">

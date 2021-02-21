@@ -8,9 +8,9 @@ const cities = ["tokyo", "las vegas", "bali", "shanghai", "singapore", "vancouve
 const text_numbers = "1, 2, 3, 4, 5, 6, 7, 8, 9"
 
 const Cup = () => {
-    const [items, setItems] = useState(text_numbers.split(","));
+    const [items, setItems] = useState([]);
     const [survivors, setSurvivors] = useState([])
-    const [bracket, setBracket] = useState([items])
+    const [bracket, setBracket] = useState([])
 
     const [index, setIndex] = useState(0);
 
@@ -40,6 +40,15 @@ const Cup = () => {
     return (
         <div>
             {/* <Debug items={items} survivors={survivors}/> */}
+            <div className="my-5">
+                <label className="d-flex justify-content-center"> 
+                comma-separated options : 
+                <textarea className="mx-1" value={items} onChange={(e)=>{
+                    setItems(e.target.value.split(","))
+                    setBracket([items])
+                }}/>
+                </label>
+            </div>
             <div className="text-center">
                 <h1 
                     onClick={()=>{pushSurvivor(items[index])}}
@@ -55,7 +64,7 @@ const Cup = () => {
                     {items[index+1]}
                 </h1>
             </div>
-            <div className="text-center">
+            <div className="text-center my-2">
                 <button className="btn btn-light" onClick={reset}>continue</button>
             </div>
             <Bracket bracket={bracket}/>
