@@ -9,7 +9,7 @@ const numbers = [1, 2, 3, 4, 5, 6, 7, 8 ,9, 10];
 const cities = ["tokyo", "las vegas", "bali", "shanghai", "singapore", "vancouver", "paris", "taipei", "havana", "bangkok"]
 const text_numbers = "1, 2, 3, 4, 5, 6, 7, 8, 9"
 
-const Deck = () => {
+const QuickSelect = () => {
     // setting up array
     const [items, setItems] = useState([]);
     const [better, setBetter] = useState([]);
@@ -125,4 +125,4 @@ const Deck = () => {
     );
 }
 
-export default Deck;
+export default QuickSelect;
