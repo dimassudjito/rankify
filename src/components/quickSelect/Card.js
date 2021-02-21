@@ -5,11 +5,9 @@ const Card = ({item}) => {
     return (
         <div className="d-flex justify-content-center">
             <div 
-                className="card m-5" 
+                className="card m-5 border border-white border-5 bg-transparent" 
                 style={{
-                    width: "18rem", 
-                    backgroundColor:"transparent",
-                    border: "5px solid white",
+                    width: "18rem",
                 }}
             >
                 <div className="card-body">

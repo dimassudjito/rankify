@@ -40,9 +40,24 @@ const Cup = () => {
     return (
         <div>
             {/* <Debug items={items} survivors={survivors}/> */}
-            <h1 onClick={()=>{pushSurvivor(items[index])}}>{items[index]}</h1>
-            <h1 onClick={()=>{pushSurvivor(items[index+1])}}>{items[index+1]}</h1>
-            <button onClick={reset}>continue</button>
+            <div className="text-center">
+                <h1 
+                    onClick={()=>{pushSurvivor(items[index])}}
+                    className="border border-white px-5 py-2 d-inline-flex"
+                >
+                    {items[index]}
+                </h1>
+                <h4>Vs.</h4>
+                <h1 
+                    onClick={()=>{pushSurvivor(items[index+1])}}
+                    className="border border-white px-5 py-2 d-inline-flex"
+                >
+                    {items[index+1]}
+                </h1>
+            </div>
+            <div className="text-center">
+                <button className="btn btn-light" onClick={reset}>continue</button>
+            </div>
             <Bracket bracket={bracket}/>
         </div>
     );
