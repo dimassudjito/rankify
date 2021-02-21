@@ -8,7 +8,7 @@ const cities = ["tokyo", "las vegas", "bali", "shanghai", "singapore", "vancouve
 const text_numbers = "1, 2, 3, 4, 5, 6, 7, 8, 9"
 
 const Cup = () => {
-    const [items, setItems] = useState(cities);
+    const [items, setItems] = useState(text_numbers.split(","));
     const [survivors, setSurvivors] = useState([])
     const [bracket, setBracket] = useState([items])
 
@@ -43,14 +43,14 @@ const Cup = () => {
             <div className="text-center">
                 <h1 
                     onClick={()=>{pushSurvivor(items[index])}}
-                    className="border border-white px-5 py-2 d-inline-flex"
+                    className="border rounded-pill border-white px-5 py-2 d-inline-flex"
                 >
                     {items[index]}
                 </h1>
                 <h4>Vs.</h4>
                 <h1 
                     onClick={()=>{pushSurvivor(items[index+1])}}
-                    className="border border-white px-5 py-2 d-inline-flex"
+                    className="border rounded-pill border-white px-5 py-2 d-inline-flex"
                 >
                     {items[index+1]}
                 </h1>
