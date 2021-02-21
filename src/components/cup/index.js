@@ -63,19 +63,25 @@ const Cup = () => {
                 </label>
             </div>
             <div className="text-center">
+                {items[index] != undefined ?
                 <h1
-                    onClick={() => { pushSurvivor(items[index]) }}
-                    className="border rounded-pill border-white px-5 py-2 d-inline-flex"
+                onClick={() => { pushSurvivor(items[index]) }}
+                className="border rounded-pill border-white px-5 py-2 d-inline-flex"
                 >
                     {items[index]}
                 </h1>
-                <h4>Vs.</h4>
-                <h1
+                : ""}
+                {items[index + 1] != undefined ?
+                <div>
+                    <h4>Vs.</h4>
+                    <h1
                     onClick={() => { pushSurvivor(items[index + 1]) }}
                     className="border rounded-pill border-white px-5 py-2 d-inline-flex"
-                >
-                    {items[index + 1]}
-                </h1>
+                    >
+                        {items[index + 1]}
+                    </h1>
+                </div>
+                : ""}
             </div>
             <div className="text-center my-2">
                 <button className="btn btn-light" onClick={reset}>continue</button>
