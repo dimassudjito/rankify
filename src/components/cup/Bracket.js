@@ -3,9 +3,10 @@ import React from 'react';
 const Bracket = ({ bracket }) => {
     return (
         <div className="row my-3 align-items-center">
-            {bracket.map((list)=>{
+            {bracket.map((list, round)=>{
                 return (
                     <div className="col">
+                        <h3>Round {round+1}</h3>
                         {list.map((item, index)=>{
                             return (
                             <div>
