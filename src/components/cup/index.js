@@ -13,6 +13,7 @@ const Cup = () => {
     const [bracket, setBracket] = useState([])
 
     const [index, setIndex] = useState(0);
+    const [start, setStart] = useState(false);
 
     // array shuffle by daplie
     const shuffle = (arr) => {
@@ -53,15 +54,27 @@ const Cup = () => {
     return (
         <div>
             {/* <Debug items={items} survivors={survivors}/> */}
-            <div className="my-5">
-                <label className="d-flex justify-content-center">
+            <div className="alert alert-primary" role="alert">
+                Type the options, and click the winner at each match
+            </div>
+            {!start &&
+            <div className="my-5 text-center">
+                <label className="mb-5 d-flex justify-content-center">
                     comma-separated options :
                 <textarea className="mx-1" value={items} onChange={(e) => {
                         setItems(e.target.value.split(","))
                         setBracket([items])
                     }} />
                 </label>
+                <button 
+                    className="btn btn-light"
+                    onClick={()=>setStart(true)}
+                >
+                    start
+                </button>
             </div>
+            }
+            {start &&
             <div className="text-center">
                 {items[index] != undefined ?
                 <h1
@@ -83,10 +96,15 @@ const Cup = () => {
                 </div>
                 : ""}
             </div>
+            }
+            {items[index] == undefined && start?
             <div className="text-center my-2">
                 <button className="btn btn-light" onClick={reset}>continue</button>
             </div>
+            : ""}
+            {start &&
             <Bracket bracket={bracket} />
+            }
         </div>
     );
 }
